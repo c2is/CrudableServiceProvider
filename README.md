@@ -3,7 +3,11 @@ ____
 
 # CrudableServiceProvider
 
-Allows you to generate `CRUD` from your Propel schema.
+Allows you to generate CRUD from your Propel schema.
+* Create or add new entries
+* Read, retrieve, search, or view existing entries
+* Update or edit existing entries
+* Delete/deactivate existing entries
 
 ## Install
 
@@ -27,7 +31,7 @@ $app->register(new CrudableServiceProvider());
 
 ## Usage
 
-Use the `propel-gen` script for generate *model*, *form* and *listing* classes:
+Use the `propel-gen` script for generate <strong>model</strong>, <strong>form</strong> and <strong>listing</strong> classes:
 ```shell
 $ ./vendor/bin/propel-gen ./path/to/propel/ main
 ```
