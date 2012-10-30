@@ -1,7 +1,13 @@
 #Do Not Use - Work In Progress#
+____
 
-Behavior that allows you to generate crud from your Propel schema.
+# CrudableServiceProvider
 
+Allows you to generate `CRUD` from your Propel schema.
+
+## Install
+
+Add these lines in your propel configuration file:
 ```ini
 # register the crudable behavior
 propel.behavior.crudable.class = ${propel.php.dir}/C2is.Behavior.Crudable.CrudableBehavior
@@ -12,34 +18,16 @@ propel.behavior.crudable.web.dir     = ${propel.php.dir}/../web
 propel.behavior.crudable.languages   = fr;en
 ```
 
-Add form extension:
+Register the service:
 ```php
-$app['form.extensions'] = $app->share($app->extend('form.extensions', function ($extensions) use ($app) {
-    $extensions[] = new \C2is\Form\Extension();
+use C2is\Provider\CrudableServiceProvider;
 
-    return $extensions;
-}));
+$app->register(new CrudableServiceProvider());
 ```
 
-Add translation file:
-```php
-$app['translator'] = $app->share($app->extend('translator', function($translator, $app) {
-    $translator->addLoader('yaml', new YamlFileLoader());
+## Usage
 
-    $languagesConf = require __DIR__.'/Resources/config/crudable/generated/languages-conf.php';
-    foreach ($languagesConf as $languageConf) {
-        $translator->addResource('yaml', sprintf('%s/Resources/locales/%s', __DIR__, $languageConf['filename']), $languageConf['locale']);
-    }
-
-    return $translator;
-}));
+Use the `propel-gen` script for generate *model*, *form* and *listing* classes:
+```shell
+$ ./vendor/bin/propel-gen ./path/to/propel/ main
 ```
-Add custom render form layout:
-```php
-$app->register(new TwigServiceProvider(), [
-    'twig.path'           => array(__DIR__.'/Resources/views/', __DIR__.'/C2is/Resources/views/'),
-    'twig.form.templates' => array('Form/form_c2is_layout.html.twig'),
-]);
-```
-
-
