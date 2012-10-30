@@ -1,0 +1,34 @@
+{
+    "name": "c2is/propel-crudable-behavior",
+    "type": "library",
+    "description": "Behavior that allows you to generate crud from your Propel schema.",
+    "keywords": ["CRUD", "propel", "behavior"],
+    "homepage": "http://www.c2is.fr",
+    "license": "MIT",
+    "authors":
+    [
+        {
+            "name": "Morgan Brunot",
+            "email": "brunot.morgan@gmail.com",
+            "homepage": "http://oziks.fr/"
+        },
+        {
+            "name": "Denis Roussel",
+            "email": "denis.roussel@gmail.com",
+            "homepage": "http://denisroussel.fr/"
+        }
+    ],
+    "require": {
+        "php":            ">=5.3.2",
+        "propel/propel1": "1.6.*",
+        "symfony/filesystem": "2.1.*",
+        "symfony/translation": "2.1.*",
+        "symfony/yaml": "2.1.*",
+        "symfony/form": "2.1.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "C2is\\": ""
+        }
+    }
+}
