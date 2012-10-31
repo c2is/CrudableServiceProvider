@@ -26,7 +26,10 @@ Register the service:
 ```php
 use C2is\Provider\CrudableServiceProvider;
 
-$app->register(new CrudableServiceProvider());
+$app->register(new CrudableServiceProvider(), array(
+    'crudable.config_dir' => __DIR__.'/Resources/config/crudable/generated',
+    'crudable.templates_dir' => __DIR__.'/Resources/views/Crud', # optional
+));
 ```
 
 ## Usage
