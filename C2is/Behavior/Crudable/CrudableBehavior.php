@@ -17,7 +17,7 @@ class CrudableBehavior extends Behavior
     protected $parameters = array(
         'route_mount' => '/',
         'route_path'  => null,
-        'controller'  => "\\C2is\\Provider\\CrudControllerProvider",
+        'controller'  => "\\C2is\\Provider\\CrudController",
         'model'       => null,
         'form'        => null,
         'type_file'   => null,

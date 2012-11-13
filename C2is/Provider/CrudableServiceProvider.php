@@ -21,8 +21,16 @@ class CrudableServiceProvider implements ServiceProviderInterface
 
     public function boot(Application $app)
     {
-        if (empty($app['crudable.config_dir'])) {
+        if (!isset($app['crudable.config_dir'])) {
             throw new RuntimeException("The crudable.config_dir parameter is undefined. It's necessary for running the crudable service provider.", 1);
+        }
+
+        if (!isset($app['form.extensions'])) {
+            throw new RuntimeException("Please, register the Form Service Provider.", 1);
+        }
+
+        if (!isset($app['twig.path'])) {
+            throw new RuntimeException("Please, register the Twig Service Provider.", 1);
         }
 
         $app['form.extensions'] = $app->share($app->extend('form.extensions', function ($extensions) use ($app) {
