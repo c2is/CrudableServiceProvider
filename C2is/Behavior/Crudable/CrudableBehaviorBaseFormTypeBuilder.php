@@ -130,6 +130,10 @@ class {$classname} extends AbstractType
                 return 'file';
                 break;
 
+            case PropelTypes::ENUM:
+                return 'choice';
+                break;
+
             default:
                 return $column->getType();
                 break;
@@ -188,7 +192,7 @@ class {$classname} extends AbstractType
                     $addDeletedColumn = true;
                 }
 
-                $builders[] = array(
+                $builder = array(
                     'name'    => $column->getName(),
                     'type'    => $this->getColumnType($column),
                     'options' => array(
@@ -197,6 +201,15 @@ class {$classname} extends AbstractType
                         'required'    => false,
                     )
                 );
+
+                if ($column->getType() == PropelTypes::ENUM) {
+                    $builder['options'] = array_merge(
+                        $builder['options'],
+                        array('choices' => array_combine($column->getValueSet(), $column->getValueSet()))
+                    );
+                }
+
+                $builders[] = $builder;
 
                 if ($addDeletedColumn) {
                     $deletedColumn = clone $column;
